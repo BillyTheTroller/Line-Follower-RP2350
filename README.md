@@ -72,5 +72,3 @@ This project is a **line-following robot** designed for speed and precision. It 
 
 ## License
 This project is licensed under the **MIT License**.
-```
-
