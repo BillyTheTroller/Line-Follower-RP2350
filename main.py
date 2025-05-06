@@ -16,7 +16,11 @@ cal_data = {}
 async def control_loop():
     
     while True:
-        if get_is_running():
+        sensor_values = ir_sensors.read() #possible bug but attempt 1 nonetheless
+        if all(value == 1 for value in sensor_values): #black=1 => if all black then the line follower stops moving
+            stop()
+            continue #end of modified code 
+        get_is_running():
             #print("==> STARTING")
             
             m = motion.get_params()
