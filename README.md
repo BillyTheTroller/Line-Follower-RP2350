@@ -23,7 +23,7 @@ This project is a **line-following robot** designed for speed and precision. It 
 | **Step-Down Converter**  | 1        | Regulates voltage from batteries |
 | **Wheels**               | 2        | Attached to motors for movement |
 | **Ball Caster**          | 1        | Provides balance and smooth turning |
-| **8-Channel IR Sensor**  | 1        | Detects the track for navigation |
+| **Analog IR Sensors**  | 3        | Detects the track for navigation |
 
 ---
 
