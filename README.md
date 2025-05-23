@@ -38,7 +38,7 @@ This project is a **line-following robot** designed for speed and precision. It 
 - **L298N Motor Driver** receives signals from the **Pico 2 W** to control the N-20 motors.
 
 ### Sensor Input:
-- The **8-channel IR sensor module** sends position data to the **Pico 2 W** for line detection.
+- The **3 Analog Sensors** send position data to the **Pico 2 W** for line detection.
 
 ---
 
