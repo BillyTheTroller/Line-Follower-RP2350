@@ -47,7 +47,7 @@ This project is a **line-following robot** designed for speed and precision. It 
 - Uses **PWM** for motor speed control.
 - Implements **basic PID control** for improved tracking accuracy.
 
-> Full code will be available in the `/code` directory.
+> Full code will be available in the `/src` directory.
 
 ---
 
