@@ -1,8 +1,8 @@
-# 📚 docs/ - Project Documentation
+# docs/ - Project Documentation
 
 This directory contains technical documentation, diagrams, and resources for the line follower project.
 
-## 🖼️ Diagram Types
+##  Diagram Types
 1. **System Architecture**  
    - Mermaid.js flowcharts (`.mmd`)
    - Exported PNG/SVG files
@@ -11,7 +11,7 @@ This directory contains technical documentation, diagrams, and resources for the
    - Fritzing/Circuit diagrams
    - Pin mapping tables
 
-## 🛠️ How to Update
+##  How to Update
 ```bash
 # Generate new Mermaid diagrams (requires Node.js)
 npx mmdc -i diagrams/system_flow.mmd -o diagrams/system_flow.png
