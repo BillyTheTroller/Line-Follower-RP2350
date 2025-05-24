@@ -1,0 +1,18 @@
+graph TD
+    A[main.py] --> B[app.py]
+    A --> C[calibration.py]
+    A --> D[motor_control.py]
+    A --> E[pid.py]
+    A --> F[motion.py]
+    A --> G[wifi.py]
+    
+    B --> H[microdot_asyncio.py]
+    B --> C
+    B --> E
+    B --> F
+    
+    C --> I[machine.ADC/Pin]
+    D --> J[machine.PWM/Pin]
+    
+    style A fill:#f9f,stroke:#333
+    style B fill:#bbf,stroke:#333

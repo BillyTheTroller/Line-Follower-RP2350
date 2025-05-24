@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant App
+    participant Main
+
+    User->>Browser: Adjusts PID params
+    Browser->>App: POST /set (kp=5.0, ki=0.1, kd=2.0)
+    App->>PID: update_params()
+    PID->>PID: Save to flash
+    App->>Main: Reset PID state (integral=0, prev_error=0)
+    App-->>Browser: Confirm update
+    
+    User->>Browser: Clicks "Calibrate"
+    Browser->>App: GET /calibrate
+    App->>Calibration: calibrate_sensors()
+    Calibration->>Sensors: 10s auto-calibration
+    Calibration->>Calibration: Save min/max
+    App-->>Browser: Show new calibration

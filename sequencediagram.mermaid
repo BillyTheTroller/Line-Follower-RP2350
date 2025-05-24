@@ -1,0 +1,36 @@
+sequenceDiagram
+    participant Main
+    participant Calibration
+    participant PID
+    participant Motion
+    participant MotorControl
+    participant Sensors
+    participant Motors
+
+    loop Control Loop (15ms)
+        Main->>Calibration: get_calibration()
+        Calibration-->>Main: calibration_data
+        
+        Main->>Sensors: read_u16() [All 3 sensors]
+        Sensors-->>Main: raw_values[3]
+        
+        Main->>Calibration: normalize(raw_values)
+        Calibration-->>Main: normalized[3]
+        
+        Main->>Main: Calculate error (sensor[0] - sensor[2])
+        
+        Main->>PID: get_params()
+        PID-->>Main: {kp, ki, kd}
+        
+        Main->>MotorControl: calculate_pid(error, kp, ki, kd)
+        MotorControl-->>Main: correction_value
+        
+        Main->>Motion: get_params()
+        Motion-->>Main: {base_speed, multiplier}
+        
+        Main->>Main: Calculate motor speeds:
+        Note right of Main: left_speed = base_speed - correction<br/>right_speed = base_speed + correction
+        
+        Main->>MotorControl: move_forward(left_speed, right_speed)
+        MotorControl->>Motors: Set PWM duty cycles
+    end
