@@ -1,4 +1,5 @@
 #app.py
+# Δημιουργία του web app και όλων των απαραίτητων ρυθμίσεων 
 from microdot_asyncio import Microdot, Response
 import calibration
 import pid
