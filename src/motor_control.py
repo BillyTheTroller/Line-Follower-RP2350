@@ -1,4 +1,5 @@
 #motor_control.py
+#Συναρτήσεις για την κίνηση του ρομπότ σύμφωνα με την κατεύθυνση των μοτέρ όπως motor_right_forward και υπολογισμός του PID 
 from machine import Pin, PWM
 
 # Πινς κατεύθυνσης (IN1–IN4)
@@ -31,6 +32,7 @@ def move_forward(left_speed, right_speed):
     pwm_left.duty_u16(left_speed)
     pwm_right.duty_u16(right_speed)
 
+#Συνάρτηση για πιθανή κίνηση όπισθεν
 def move_backward(speed=60000):
     print(">> Πίσω")
     motor_left_forward.off()
@@ -40,6 +42,7 @@ def move_backward(speed=60000):
     pwm_left.duty_u16(speed)
     pwm_right.duty_u16(speed)
 
+#Συνάρτηση για στροφή αριστερά
 def turn_left(speed=60000):
     print(">> Αριστερά")
     motor_left_forward.off()
@@ -49,6 +52,7 @@ def turn_left(speed=60000):
     pwm_left.duty_u16(speed)
     pwm_right.duty_u16(speed)
 
+#Συνάρτηση για στροφή δεξιά
 def turn_right(speed=60000):
     print(">> Δεξιά")
     motor_left_forward.on()
@@ -58,6 +62,7 @@ def turn_right(speed=60000):
     pwm_left.duty_u16(speed)
     pwm_right.duty_u16(speed)
 
+#Συνάρτηση για να σταματάει
 def stop():
     #print(">> Στοπ")
     global previous_error, integral
@@ -70,13 +75,14 @@ def stop():
     pwm_left.duty_u16(0)
     pwm_right.duty_u16(0)
 
+#Συνάρτηση για τον υπολογισμό του PID
 def calculate_pid(error, kp, ki, kd):
     global previous_error, integral
 
-    integral += error
-    derivative = error - previous_error
-    output = (kp * error) + (ki * integral) + (kd * derivative)
-    previous_error = error
+    integral += error # Υπολογίζει το μέθεθος των  errors στην διάρκεια ενός χρονικού διαστήματος και με το ki μπορείς να το μειώσεις
+    derivative = error - previous_error # Υπολογιζεί πόσο γρήγορα γίνεται μεταβολή στο error και μπορείς να το ρυθμίσεις με το kd
+    output = (kp * error) + (ki * integral) + (kd * derivative) # Συνολικός υπολογισμός 
+    previous_error = error #Υπολογισμός προηγούμενου σφάλματος
 
     return output
 
