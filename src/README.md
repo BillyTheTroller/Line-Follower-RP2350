@@ -2,8 +2,6 @@
 
 This directory contains the main source code for the line follower robot project.
 
-##  File Structure
-
 src/
 ├── main.py           ── Main control loop (entry point)
 ├── calibration.py    ── IR sensor calibration logic
@@ -38,3 +36,15 @@ pip install microdot-asyncio
 
 # Run the main controller
 python src/main.py
+```
+
+```text
+##  File Structure
+
+src/
+├── main.py           ── Main control loop (entry point)
+├── calibration.py    ── IR sensor calibration logic
+├── motor_control.py  ── PWM motor driver functions
+├── pid.py            ── PID controller implementation
+├── motion.py         ── Speed and steering parameters
+└── wifi.py           ── Wi-Fi connection handler
