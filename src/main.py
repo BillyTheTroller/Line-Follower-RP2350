@@ -1,4 +1,5 @@
 #main.py
+#το κύριο αρχείο του έργου όπου από αυτό καλούνται όλα τα υπόλοιπα και γίνεται η απαραίτητη διαχείρηση
 import wifi
 import time
 import uasyncio as asyncio
@@ -12,7 +13,8 @@ import calibration
 # Παγκόσμια μεταβλητή calibration
 cal_data = {}
 
-# PID control + αισθητήρες
+# PID control + αισθητήρες 
+#Από εδώ γίνεται η κλήση του κώδικα για καλιμπράρισμα ,  την διόρθωση του σφάλματος σύμφωνα με τον αλγόρθμο PID και ο εντοπισμός για απότομες στροφές
 async def control_loop():
     while True:
         if get_is_running():
@@ -32,7 +34,8 @@ async def control_loop():
             # Detect sharp turns (when error exceeds threshold)
             sharp_turn_threshold = 0.8  # Adjust this value based on your needs
             is_sharp_turn = abs(error) > sharp_turn_threshold
-            
+
+            #Αν είναι απότομη στροφή τρέχει συγκεκριμένο κώδικα αλλιώς τρέχει τον άλλο κώδικα
             if is_sharp_turn:
                 # Tank steering for sharp turns
                 if error > 0:  # Sharp right turn
@@ -62,7 +65,7 @@ async def control_loop():
                 move_forward(left_speed, right_speed)
                 print(f"[PID] error={error:.2f} | L={left_speed} R={right_speed}")
             
-            # Check for all black/white
+            # Check for all black
             all_black = all(v > 0.9 for v in normalized)
             if all_black:
                 print("Στάση: Όλοι οι αισθητήρες είναι μαύροι/άσπροι! Απενεργοποίηση λειτουργίας.")
@@ -90,6 +93,7 @@ async def main():
     print("Εκκίνηση control loop...")
     asyncio.create_task(control_loop())
 
+    #Γίνεται η εκκίνηση του server για εξαποστάσεως έλεγχο των παραμέτρων
     print("Starting async server on 0.0.0.0:80...")
     await app.start_server(host="0.0.0.0", port=80)
 
