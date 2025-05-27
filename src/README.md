@@ -3,7 +3,7 @@
 This directory contains the main source code for the line follower robot project.
 
 ##  File Structure
-```text
+
 src/
 ├── main.py           ── Main control loop (entry point)
 ├── calibration.py    ── IR sensor calibration logic
