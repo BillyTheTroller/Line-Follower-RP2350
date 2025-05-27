@@ -30,7 +30,7 @@ async def control_loop():
             error = normalized[0] - normalized[2]
             
             # Detect sharp turns (when error exceeds threshold)
-            sharp_turn_threshold = 0.6  # Adjust this value based on your needs
+            sharp_turn_threshold = 0.8  # Adjust this value based on your needs
             is_sharp_turn = abs(error) > sharp_turn_threshold
             
             if is_sharp_turn:
